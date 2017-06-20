@@ -7,11 +7,11 @@ class SP_Hangman < Hangman
   def initialize(player)
     words_raw_json = File.read('english_words.json')
     @words = JSON.parse(words_raw_json)
-    @player = player
+    @player2 = player
     @guessed_letters = []
   end
 
-
+  ### unique possbly use inherited version with refactor
   def playgame
     @number_of_limbs = 0
 
@@ -28,84 +28,12 @@ class SP_Hangman < Hangman
     self.end_round
   end
 
+  ##unique
   def find_word
     #107567
     @secret_word = @words[rand(0..107566)]
     @dashes = Dashes.make_dashes(@secret_word)
     @secret_char_array = @secret_word.chars
-  end
-
-  def draws_hangman_and_dashes
-
-    puts Hangman_Strings.get_strings_arr[@number_of_limbs]
-    puts "Already guessed:"
-    p @guessed_letters
-    puts @dashes
-
-  end
-
-  def get_input
-    ##if we have time we'll validate the data so that it is only ever one char a-z (have input shovel to an array and shift first element off??)
-    puts "#{@player.name} Please enter a letter."
-    letter = gets.chomp
-    if letter == "exit"
-      abort("Bye, Felicia!")
-      #love this!
-    elsif letter == @secret_word
-      @dashes = @secret_word
-    elsif letter.chars.size > 1
-      puts "Please only enter a single character or  for exit."
-      self.get_input
-    elsif @guessed_letters.include?(letter)
-      puts "You already guessed that letter, try again."
-      puts "Already guessed:"
-      p @guessed_letters
-    end
-    letter
-  end
-
-  def check_input(input)
-    @secret_char_array.include?(input) ? self.correct_guess(input) : self.incorrect_guess(input)
-  end
-
-  def incorrect_guess(input)
-    @number_of_limbs += 1
-    @guessed_letters << input
-    self.display_guessed_letters
-  end
-
-  def correct_guess(input)
-    index_arr = []
-    #sets index equal to the index of the character in secret word
-    @secret_char_array.each_with_index do |value, idx|
-      if value == input
-        @guessed_letters << input
-        index_arr << idx
-        @secret_char_array[idx] = "*"
-      end
-    end
-    #multiply by two to account for spaces inbetween the dashes
-    index_arr.each do |index|
-      index *= 2
-      @dashes[index]= input
-    end
-    self.display_guessed_letters
-  end
-
-  def display_guessed_letters
-    @guessed_letters
-  end
-
-  def game_over?
-
-    dashes_without_spaces = @dashes.gsub(/\s+/, "")
-
-    if dashes_without_spaces == @secret_word.gsub(/\s+/, "") || @number_of_limbs > 5
-      return true
-    else
-      return false
-    end
-
   end
 
 
@@ -114,14 +42,14 @@ class SP_Hangman < Hangman
     if dashes_without_spaces == @secret_word.gsub(/\s+/, "")
       #player wins
       puts "You win!!!"
-      @player.wins += 1
-      puts "#{@player.name}'s record is #{@player.wins} wins and #{@player.losses} losses"
+      @player2.wins += 1
+      puts "#{@player2.name}'s record is #{@player2.wins} wins and #{@player2.losses} losses"
     else
       #player loses
       puts "You lose!!!"
       puts "The word was #{@secret_word}"
-      @player.losses += 1
-      puts "#{@player.name}'s record is #{@player.wins} wins and #{@player.losses} losses"
+      @player2.losses += 1
+      puts "#{@player2.name}'s record is #{@player2.wins} wins and #{@player2.losses} losses"
     end
   end
 
