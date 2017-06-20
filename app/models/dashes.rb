@@ -14,6 +14,4 @@ class Dashes
     dashes
   end
 
-
-
 end

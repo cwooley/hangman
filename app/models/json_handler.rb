@@ -1,5 +1,3 @@
-require 'json'
-
 class JSON_Handler
   def self.make_json
     #take all players and hashify them
@@ -13,9 +11,7 @@ class JSON_Handler
     json = players_hash.to_json
 
     #Delete existing json file if one exists
-    if File.exist?("players_info.json")
-      File.delete("players_info.json")
-    end
+    wipe_all_players
 
     #Make a json file with all player data in it
     players_file = File.new("players_info.json", "w+")

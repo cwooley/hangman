@@ -1,5 +1,3 @@
-require 'io/console'
-require 'pry'
 class Hangman
 
   attr_accessor :players, :number_of_limbs, :dashes, :secret_word, :secret_char_array, :temp_player

@@ -1,9 +1,5 @@
-require 'JSON'
-require_relative 'player.rb'
-require_relative 'dashes.rb'
-require_relative 'hangman_strings.rb'
+class SP_Hangman < Hangman
 
-class SP_Hangman
   attr_accessor :player, :words, :dashes, :secret_word, :guessed_letters, :number_of_limbs
 
 
