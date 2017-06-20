@@ -1,6 +1,6 @@
 class SP_Hangman < Hangman
 
-  attr_accessor :player, :words, :dashes, :secret_word, :guessed_letters, :number_of_limbs
+  attr_accessor :words
 
 
 
