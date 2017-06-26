@@ -7,8 +7,12 @@
   <body>
       <h1>Welcome to Hangman</h1>
     </br>
-    </br>
+    <%= @hangman.display_hangman[@hangman.number_of_limbs] %>
     </br>
     <h2><%= @hangman.make_dashes %></h2>
+
+    <form>
+    <input type="text">
+    </form>
   </body>
 </html>
